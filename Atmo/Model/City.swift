@@ -9,13 +9,17 @@
 import Foundation
 import CoreLocation
 import LatLongToTimezone
-
+import Alamofire
+import SwiftyJSON
 
 class City {
+    var cityName : String = ""
     var coordinates : CLLocationCoordinate2D!
     var timeZone : TimeZone!
+    var localHours : Int!
     
     func setTimeZone() {
         self.timeZone = TimezoneMapper.latLngToTimezone(coordinates)
     }
+    
 }

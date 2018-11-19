@@ -10,3 +10,6 @@ import Foundation
 
 let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
 let APP_ID = "4017f2a1d0d140e094160e40bcc5f9f0"
+
+let GEOCODING_URL = "https://maps.googleapis.com/maps/api/geocode/json"
+let API_GEOCODING_KEY = "AIzaSyCOfGLlcLZhKz4euVdKmRoA5OAvra0c1bQ"

@@ -13,15 +13,15 @@ class Weather {
     //Переменные модели
     var temperature : Int = 0
     var condition : Int = 0
-    var city : String = ""
     var conditionText : String = ""
     var weatherIconName : String = ""
     var backgroundName : String = ""
-    var wind : Int = 0
+    var windSpeed : Float = 0
+    var windDirection : String = ""
     var sunriseHour : String = ""
     var sunsetHour : String = ""
     var hour : Int = 12
-    
+
     
     //Методы для преобразования условий
     
@@ -147,4 +147,9 @@ class Weather {
         return dateFormatter.string(from: date)
     }
     
+    func windDirection(degree : Float) -> String {
+        let directions = ["Северный", "Северо-восточный", "Восточный", "Юго-восточный", "Южный", "Юго-западный", "Западный", "Северо-западный"]
+        let i: Int = Int((degree + 33.75)/45)
+        return directions[i % 8]
+    }
 }

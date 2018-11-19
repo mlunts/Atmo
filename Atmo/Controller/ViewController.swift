@@ -26,6 +26,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var windDirectionLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,20 +82,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func updateWeatherData(json : JSON) {
         if let tempResult = json["main"]["temp"].double {
-            let calendar = Calendar.current
-            
+            city.cityName = json["name"].stringValue
             weatherDataModel.temperature =  Int(tempResult - 273.15)
-            weatherDataModel.city = json["name"].stringValue
             weatherDataModel.condition = json["weather"][0]["id"].intValue
             weatherDataModel.conditionText = json["weather"][0]["description"].stringValue
             weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
             weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
-            weatherDataModel.wind = json["wind"]["speed"].intValue
-          
+            weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
+            weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
+            
             weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
             weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
-            
-        
             
             updateUI()
             
@@ -103,16 +102,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateUI() {
-        
-        cityLabel.text = weatherDataModel.city
+        cityLabel.text = city.cityName
         temperatureLabel.text = "\(weatherDataModel.temperature)°"
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
         backgroundImage.image = UIImage(named: weatherDataModel.backgroundName)
         conditionLabel.text = (weatherDataModel.conditionText).firstUppercased
 //        tipLabel.text = weatherDataModel.mood
-//        windLabel.text = "Скорость ветра: \(weatherDataModel.wind) км/ч"
+        windDirectionLabel.text = weatherDataModel.windDirection
+        windSpeedLabel.text = "\(weatherDataModel.windSpeed) км/ч"
         sunriseLabel.text = "\(weatherDataModel.sunriseHour)"
         sunsetLabel.text = "\(weatherDataModel.sunsetHour)"
+        
+        print(city.timeZone)
     }
     
     
