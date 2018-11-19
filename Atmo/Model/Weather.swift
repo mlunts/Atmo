@@ -14,13 +14,12 @@ class Weather {
     var temperature : Int = 0
     var condition : Int = 0
     var city : String = ""
+    var conditionText : String = ""
     var weatherIconName : String = ""
     var backgroundName : String = ""
     var wind : Int = 0
-    var sunriseHour : Int = 0
-    var sunriseMinute : Int = 0
-    var sunsetHour : Int = 0
-    var sunsetMinute : Int = 0
+    var sunriseHour : String = ""
+    var sunsetHour : String = ""
     var hour : Int = 12
     
     
@@ -28,14 +27,18 @@ class Weather {
     
     func updateBackground(condition: Int) -> String {
         switch (condition) {
-        case 500...531 : // снег
+        case 200...232 : // шторм
+                return "thunderstorm-night-image"
+            
+            
+        case 500...531 : // дождь
             switch hour {
             case 6..<18 :
                 return "rain-day-image2"
             default :
                 return "rain-day-image"
             }
-        
+            
         case 600...622 : //снег
             switch hour {
             case 6..<18 :
@@ -72,41 +75,76 @@ class Weather {
     }
     
     func updateWeatherIcon(condition: Int) -> String {
-        
         switch (condition) {
-            
-        case 301...500 :
-            return "038-rain-1"
-            
-        case 701...771 :
+        case 200...232 : // шторм
             switch hour {
-            case 6..<20 :  return "030-clouds-1"
-            default: return "fog2"
+            case 6..<18 :
+                return "storm"
+            default :
+                return "storm-night"
             }
             
-        case 800 :
+        case 300...321 : // легкий дождь
             switch hour {
-            case 6..<20 : return "050-sun"
-            default: return "028-moon-2"
+            case 6..<18 :
+                return "hail"
+            default :
+                return "night-rain"
             }
             
-            
-            
-        case 801...804 :
+        case 500...531 : // дождь
             switch hour {
-            case 6..<20 : return "003-cloudy-4"
-            default: return "009-cloud"
+            case 6..<18 :
+                return "storm"
+            default :
+                return "night-rain"
             }
             
+        case 600...622 : //снег
+            switch hour {
+            case 6..<18 :
+                return "snowy"
+            default :
+                return "night-snoq"
+            }
             
+        case 701...741 : //туман
+            return "fog"
             
-        case 903 :
-            return "042-snow"
+        case 800 : // ясно
+            switch hour {
+            case 6..<18 :
+                return "sun"
+            default :
+                return "night-4"
+            }
             
+        case 801 : // частичная облачность
+            return "cloudy-3"
             
-        default :
-            return "003-cloudy-4"
+        case 802 : //облачно
+            switch hour {
+            case 6..<18 :
+                return "cloud"
+            default :
+                return "cloud-moon"
+            }
+            
+        case 803...804 : //сильная облачность
+            return "cloudy"
+            
+        default:
+            return "windy"
         }
-        
     }
+    
+    func setHour(timeZone: TimeZone, interval: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(interval))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = timeZone
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
+    }
+    
 }

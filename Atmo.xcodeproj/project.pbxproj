@@ -11,6 +11,8 @@
 		9C27372721A1A2ED00FBCA5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C27372621A1A2ED00FBCA5C /* Assets.xcassets */; };
 		9C27372E21A1A80D00FBCA5C /* Constains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27372D21A1A80D00FBCA5C /* Constains.swift */; };
 		9C27373021A1A8F000FBCA5C /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27372F21A1A8F000FBCA5C /* Weather.swift */; };
+		9C8F6F2021A29C38007469B7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F1F21A29C38007469B7 /* City.swift */; };
+		9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2121A2AA56007469B7 /* Extensions.swift */; };
 		9CCE2B2C218CB66300ADC679 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2B218CB66300ADC679 /* AppDelegate.swift */; };
 		9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2D218CB66300ADC679 /* ViewController.swift */; };
 		9CCE2B31218CB66300ADC679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2F218CB66300ADC679 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 		9C27372621A1A2ED00FBCA5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C27372D21A1A80D00FBCA5C /* Constains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constains.swift; sourceTree = "<group>"; };
 		9C27372F21A1A8F000FBCA5C /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		9C8F6F1F21A29C38007469B7 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		9C8F6F2121A2AA56007469B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9CCE2B28218CB66300ADC679 /* Atmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Atmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CCE2B2B218CB66300ADC679 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CCE2B2D218CB66300ADC679 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			children = (
 				9C27372D21A1A80D00FBCA5C /* Constains.swift */,
 				9C27372F21A1A8F000FBCA5C /* Weather.swift */,
+				9C8F6F1F21A29C38007469B7 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				9CCE2B2B218CB66300ADC679 /* AppDelegate.swift */,
+				9C8F6F2121A2AA56007469B7 /* Extensions.swift */,
 				9C27372821A1A4A800FBCA5C /* Model */,
 				9C27372921A1A4AD00FBCA5C /* View */,
 				9C27372A21A1A4B700FBCA5C /* Controller */,
@@ -195,11 +201,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/LatLongToTimezone/LatLongToTimezone.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMoment/SwiftMoment.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LatLongToTimezone.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMoment.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,6 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C27373021A1A8F000FBCA5C /* Weather.swift in Sources */,
+				9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */,
+				9C8F6F2021A29C38007469B7 /* City.swift in Sources */,
 				9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */,
 				9CCE2B2C218CB66300ADC679 /* AppDelegate.swift in Sources */,
 				9C27372E21A1A80D00FBCA5C /* Constains.swift in Sources */,
