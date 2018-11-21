@@ -22,7 +22,7 @@ class Weather {
     var windDirection : String = ""
     var sunriseHour : String = ""
     var sunsetHour : String = ""
-    var hour : Int = 12
+    var hour : Int = 0
 
     func getCurrentHour() -> Int{
         return Calendar.current.component(.hour, from: Date())
@@ -40,7 +40,7 @@ class Weather {
             
             
         case 500...531 : // дождь
-            switch hour {
+            switch (hour) {
             case 6..<18 :
                 return "rain-day-image2"
             default :
@@ -77,12 +77,13 @@ class Weather {
             }
         
         case 802...804 : //облачно
-            switch hour {
-            case 6...18 :
+            switch (hour) {
+            case 7...18 :
                 return "cloudy-day-image"
             default :
                 return "cloudy-night-image"
             }
+            
         default:
             return "fog-image"
         }

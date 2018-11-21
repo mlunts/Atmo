@@ -62,6 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getLocation()
         dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "dd MMMM"
         locationManager.delegate = self
@@ -72,24 +73,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         thisTableView?.delegate = self;
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        if location.horizontalAccuracy > 0 {
+    func getLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
+        let location = locationManager.location?.coordinate
+       
             locationManager.stopUpdatingLocation()
             
-            print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
+        print("longitude = \(location!.longitude), latitude = \(location!.latitude)")
             
-            let latitude = String(location.coordinate.latitude)
-            let longitude = String(location.coordinate.longitude)
+        let latitude = String(location!.latitude)
+        let longitude = String(location!.longitude)
             
             let params : [String : String] = ["lat" : latitude, "lon" : longitude, "lang" : "ru", "appid" : APP_ID]
             
-            city.coordinates = location.coordinate
+            city.coordinates = location
             city.setTimeZone()
             
             getWeatherData(url: WEATHER_URL, parameters: params)
             getForecastData(url: FORECAST_URL, parameters: params)
-        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -104,7 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             response in
             if response.result.isSuccess {
                 let forecastJSON : JSON = JSON(response.result.value!)
-            print(forecastJSON)
+            
                 self.updateForecastData(json: forecastJSON)
             }
         }
@@ -138,7 +147,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
             weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
             weatherDataModel.hour = weatherDataModel.getCurrentHour()
-            print(weatherDataModel.hour)
+            print("DFDFDF - \(weatherDataModel.hour)")
             weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
             weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
             
