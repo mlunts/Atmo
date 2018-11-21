@@ -12,6 +12,8 @@ class Weather {
     
     //Переменные модели
     var temperature : Int = 0
+    var temperatureMax : Int = 0
+    var temperatureMin : Int = 0
     var condition : Int = 0
     var conditionText : String = ""
     var weatherIconName : String = ""
@@ -22,8 +24,14 @@ class Weather {
     var sunsetHour : String = ""
     var hour : Int = 12
 
-    
+    func getCurrentHour() -> Int{
+        return Calendar.current.component(.hour, from: Date())
+    }
     //Методы для преобразования условий
+//    
+//    init(temperature : Int) {
+//        self.temperature = temperature
+//    }
     
     func updateBackground(condition: Int) -> String {
         switch (condition) {
@@ -41,30 +49,36 @@ class Weather {
             
         case 600...622 : //снег
             switch hour {
-            case 6..<18 :
+            case 6...18 :
                 return "snow-day-image"
             default :
                 return "snow-night-image"
             }
         case 701...741 : //туман
             switch hour {
-            case 6..<18 :
+            case 6...18 :
                 return "fog-image"
             default :
                 return "fog-night-image"
             }
         case 800 : // ясно
             switch hour {
-            case 6..<18 :
+            case 6...18 :
                 return "sunny-day-image"
             default :
                 return "noclouds-night-image"
             }
         case 801 : // частичная облачность
-            return "partlycloudy-day-image"
+        switch hour {
+        case 6...18 :
+                return "partlycloudy-day-image"
+            default :
+                return "cloudy-night-image"
+            }
+        
         case 802...804 : //облачно
             switch hour {
-            case 6..<18 :
+            case 6...18 :
                 return "cloudy-day-image"
             default :
                 return "cloudy-night-image"
@@ -75,6 +89,7 @@ class Weather {
     }
     
     func updateWeatherIcon(condition: Int) -> String {
+        
         switch (condition) {
         case 200...232 : // шторм
             switch hour {

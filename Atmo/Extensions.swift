@@ -19,3 +19,16 @@ extension StringProtocol {
         return String(first).capitalized + dropFirst()
     }
 }
+
+func generateDates(startDate :Date?, addbyUnit:Calendar.Component, value : Int) -> [Date] {
+    
+    var dates = [Date]()
+    var date = startDate!
+    let endDate = Calendar.current.date(byAdding: addbyUnit, value: value, to: date)!
+    while date < endDate {
+        date = Calendar.current.date(byAdding: addbyUnit, value: 1, to: date)!
+        dates.append(date)
+    }
+    return dates
+}
+
