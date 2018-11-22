@@ -15,7 +15,6 @@ class forecastViewCell: UITableViewCell {
     @IBOutlet weak var cellMaxTempLabel: UILabel!
     @IBOutlet weak var cellDateLabel: UILabel!
     @IBOutlet weak var cellCondTempLabel: UILabel!
-    
     @IBOutlet weak var cellCondIconImage: UIImageView!
     
     

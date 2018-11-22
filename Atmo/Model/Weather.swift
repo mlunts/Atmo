@@ -23,15 +23,6 @@ class Weather {
     var sunriseHour : String = ""
     var sunsetHour : String = ""
     var hour : Int = 0
-
-    func getCurrentHour() -> Int{
-        return Calendar.current.component(.hour, from: Date())
-    }
-    //Методы для преобразования условий
-//    
-//    init(temperature : Int) {
-//        self.temperature = temperature
-//    }
     
     func updateBackground(condition: Int) -> String {
         switch (condition) {

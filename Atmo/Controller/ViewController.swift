@@ -32,9 +32,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     
-  
+    
     @IBOutlet weak var thisTableView: UITableView!
-  
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -72,7 +72,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         thisTableView?.dataSource = self;
         thisTableView?.delegate = self;
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func getLocation() {
         locationManager.requestWhenInUseAuthorization()
         
@@ -83,21 +87,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
         
         let location = locationManager.location?.coordinate
-       
-            locationManager.stopUpdatingLocation()
-            
+        
+        locationManager.stopUpdatingLocation()
+        
         print("longitude = \(location!.longitude), latitude = \(location!.latitude)")
-            
+        
         let latitude = String(location!.latitude)
         let longitude = String(location!.longitude)
-            
-            let params : [String : String] = ["lat" : latitude, "lon" : longitude, "lang" : "ru", "appid" : APP_ID]
-            
-            city.coordinates = location
-            city.setTimeZone()
-            
-            getWeatherData(url: WEATHER_URL, parameters: params)
-            getForecastData(url: FORECAST_URL, parameters: params)
+        
+        let params : [String : String] = ["lat" : latitude, "lon" : longitude, "lang" : "ru", "appid" : APP_ID]
+        
+        city.coordinates = location
+        city.setTimeZone()
+        
+        getWeatherData(url: WEATHER_URL, parameters: params)
+        getForecastData(url: FORECAST_URL, parameters: params)
         
     }
     
@@ -113,7 +117,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             response in
             if response.result.isSuccess {
                 let forecastJSON : JSON = JSON(response.result.value!)
-            
+                
                 self.updateForecastData(json: forecastJSON)
             }
         }
@@ -139,6 +143,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     func updateWeatherData(json : JSON) {
         if let tempResult = json["main"]["temp"].double {
             city.cityName = json["name"].stringValue
+            weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
+            print("DFDFDF - \(weatherDataModel.hour)")
             weatherDataModel.temperature =  Int(tempResult - 273.15)
             weatherDataModel.condition = json["weather"][0]["id"].intValue
             weatherDataModel.conditionText = json["weather"][0]["description"].stringValue
@@ -146,8 +152,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
             weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
             weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
-            weatherDataModel.hour = weatherDataModel.getCurrentHour()
-            print("DFDFDF - \(weatherDataModel.hour)")
             weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
             weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
             
@@ -159,18 +163,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func updateForecastData(json : JSON) {
-//        for i in 0...4 {
+        //        for i in 0...4 {
         if(forecast.count < 6) {
-        for i in 0...4 {
-            var weather = Weather()
-            weather.temperatureMax = Int(json["list"][i]["main"]["temp_max"].double! - 273.15)
-            weather.temperatureMin = Int(json["list"][i]["main"]["temp_min"].double! - 273.15)
-            weather.conditionText = json["list"][i]["weather"][0]["description"].stringValue
-            weather.condition = json["list"][i]["weather"][0]["id"].intValue
-            weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
-            forecast.append(weather)
-            self.thisTableView.reloadData()
-        }
+            for i in 0...4 {
+                let weather = Weather()
+                weather.hour = Calendar.current.component(.hour, from: Date())
+                weather.temperatureMax = Int(json["list"][i]["main"]["temp_max"].double! - 273.15)
+                weather.temperatureMin = Int(json["list"][i]["main"]["temp_min"].double! - 273.15)
+                weather.conditionText = json["list"][i]["weather"][0]["description"].stringValue
+                weather.condition = json["list"][i]["weather"][0]["id"].intValue
+                weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
+                forecast.append(weather)
+                self.thisTableView.reloadData()
+            }
         }
     }
     
@@ -186,6 +191,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         sunsetLabel.text = "\(weatherDataModel.sunsetHour)"
         
     }
-
+    
 }
 
