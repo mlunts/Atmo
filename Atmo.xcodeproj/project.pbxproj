@@ -18,6 +18,8 @@
 		9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2D218CB66300ADC679 /* ViewController.swift */; };
 		9CCE2B31218CB66300ADC679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2F218CB66300ADC679 /* Main.storyboard */; };
 		9CCE2B36218CB66600ADC679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B34218CB66600ADC679 /* LaunchScreen.storyboard */; };
+		9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */; };
+		9CFC2A6821A9B1E20022C275 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		9CCE2B30218CB66300ADC679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CCE2B35218CB66600ADC679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CCE2B37218CB66600ADC679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListTableViewController.swift; sourceTree = "<group>"; };
+		9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		DE2504E72BEE42045D34CF0B /* Pods-Atmo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Atmo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Atmo/Pods-Atmo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +86,7 @@
 			children = (
 				9CCE2B2F218CB66300ADC679 /* Main.storyboard */,
 				9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */,
+				9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				9CCE2B2D218CB66300ADC679 /* ViewController.swift */,
+				9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,12 +253,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CFC2A6821A9B1E20022C275 /* CityTableViewCell.swift in Sources */,
 				9C27373021A1A8F000FBCA5C /* Weather.swift in Sources */,
 				9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */,
 				9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */,
 				9C8F6F2021A29C38007469B7 /* City.swift in Sources */,
 				9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */,
 				9CCE2B2C218CB66300ADC679 /* AppDelegate.swift in Sources */,
+				9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */,
 				9C27372E21A1A80D00FBCA5C /* Constains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

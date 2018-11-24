@@ -52,8 +52,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
         let stringDate = dateFormatter.string(from: dates[indexPath.row])
         let cellForecast = forecast[indexPath.row]
-        cell.cellMaxTempLabel.text = "\(cellForecast.temperatureMax)°"
-        cell.cellMinTempLabel.text = "\(cellForecast.temperatureMin)°"
+        if(cellForecast.temperatureMax < cellForecast.temperatureMin) {
+            cell.cellMaxTempLabel.text = "\(cellForecast.temperatureMin)°"
+            cell.cellMinTempLabel.text = "\(cellForecast.temperatureMax)°"
+        } else {
+            cell.cellMaxTempLabel.text = "\(cellForecast.temperatureMax)°"
+            cell.cellMinTempLabel.text = "\(cellForecast.temperatureMin)°"
+        }
         cell.cellCondTempLabel.text = (cellForecast.conditionText).firstUppercased
         cell.cellCondIconImage.image = UIImage(named: cellForecast.weatherIconName)
         cell.cellDateLabel.text = stringDate
@@ -90,8 +95,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         locationManager.stopUpdatingLocation()
         
-        print("longitude = \(location!.longitude), latitude = \(location!.latitude)")
-        
         let latitude = String(location!.latitude)
         let longitude = String(location!.longitude)
         
@@ -117,7 +120,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             response in
             if response.result.isSuccess {
                 let forecastJSON : JSON = JSON(response.result.value!)
-                
+                print(forecastJSON)
                 self.updateForecastData(json: forecastJSON)
             }
         }
@@ -164,19 +167,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     func updateForecastData(json : JSON) {
         //        for i in 0...4 {
-        if(forecast.count < 6) {
+   
             for i in 0...4 {
                 let weather = Weather()
+                let j = 7*(i+1)
                 weather.hour = Calendar.current.component(.hour, from: Date())
-                weather.temperatureMax = Int(json["list"][i]["main"]["temp_max"].double! - 273.15)
-                weather.temperatureMin = Int(json["list"][i]["main"]["temp_min"].double! - 273.15)
-                weather.conditionText = json["list"][i]["weather"][0]["description"].stringValue
-                weather.condition = json["list"][i]["weather"][0]["id"].intValue
+                weather.temperatureMax = Int(json["list"][j]["main"]["temp_max"].double! - 273.15)
+                print( weather.temperatureMax)
+                weather.temperatureMin = Int(json["list"][2*i]["main"]["temp_min"].double! - 273.15)
+                print( weather.temperatureMin)
+                weather.conditionText = json["list"][j]["weather"][0]["description"].stringValue
+                weather.condition = json["list"][j]["weather"][0]["id"].intValue
                 weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
                 forecast.append(weather)
                 self.thisTableView.reloadData()
             }
-        }
+        
     }
     
     func updateUI() {
