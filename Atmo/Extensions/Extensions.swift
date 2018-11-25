@@ -31,4 +31,3 @@ func generateDates(startDate :Date?, addbyUnit:Calendar.Component, value : Int) 
     }
     return dates
 }
-

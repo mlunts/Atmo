@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Alamofire
 import SwiftyJSON
-import SwiftMoment
+
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -48,7 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         let cellIdentifier = "forecastViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? forecastViewCell  else {
-            fatalError("The dequeued cell is not an instance of OrderTableViewCell.")
+            fatalError("The dequeued cell is not an instance of forecastViewCell.")
         }
         let stringDate = dateFormatter.string(from: dates[indexPath.row])
         let cellForecast = forecast[indexPath.row]
@@ -74,8 +74,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        thisTableView?.dataSource = self;
-        thisTableView?.delegate = self;
+        thisTableView?.dataSource = self
+        thisTableView?.delegate = self
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -166,8 +166,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func updateForecastData(json : JSON) {
-        //        for i in 0...4 {
-   
             for i in 0...4 {
                 let weather = Weather()
                 let j = 7*(i+1)

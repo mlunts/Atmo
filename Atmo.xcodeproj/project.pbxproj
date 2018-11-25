@@ -18,8 +18,10 @@
 		9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2D218CB66300ADC679 /* ViewController.swift */; };
 		9CCE2B31218CB66300ADC679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2F218CB66300ADC679 /* Main.storyboard */; };
 		9CCE2B36218CB66600ADC679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B34218CB66600ADC679 /* LaunchScreen.storyboard */; };
+		9CCFCF0121AAEB9A008728DD /* Cities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */; };
 		9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */; };
-		9CFC2A6821A9B1E20022C275 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */; };
+		9CFC2A6821A9B1E20022C275 /* CitiesListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */; };
+		9CFC2A6F21A9D60F0022C275 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +39,10 @@
 		9CCE2B30218CB66300ADC679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CCE2B35218CB66600ADC679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CCE2B37218CB66600ADC679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CCFCF0021AAEB9A008728DD /* Cities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cities.xcdatamodel; sourceTree = "<group>"; };
 		9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListTableViewController.swift; sourceTree = "<group>"; };
-		9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CitiesListTableCell.swift; path = Atmo/View/CitiesListTableCell.swift; sourceTree = SOURCE_ROOT; };
+		9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
 		DE2504E72BEE42045D34CF0B /* Pods-Atmo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Atmo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Atmo/Pods-Atmo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				9C27372D21A1A80D00FBCA5C /* Constains.swift */,
+				9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */,
 				9C27372F21A1A8F000FBCA5C /* Weather.swift */,
 				9C8F6F1F21A29C38007469B7 /* City.swift */,
 			);
@@ -86,7 +91,7 @@
 			children = (
 				9CCE2B2F218CB66300ADC679 /* Main.storyboard */,
 				9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */,
-				9CFC2A6721A9B1E20022C275 /* CityTableViewCell.swift */,
+				9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			children = (
 				9CCE2B2D218CB66300ADC679 /* ViewController.swift */,
 				9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */,
+				9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -122,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				9CCE2B2B218CB66300ADC679 /* AppDelegate.swift */,
-				9C8F6F2121A2AA56007469B7 /* Extensions.swift */,
+				9CFC2A6D21A9D53F0022C275 /* Extensions */,
 				9C27372821A1A4A800FBCA5C /* Model */,
 				9C27372921A1A4AD00FBCA5C /* View */,
 				9C27372A21A1A4B700FBCA5C /* Controller */,
@@ -131,6 +137,14 @@
 				9CCE2B37218CB66600ADC679 /* Info.plist */,
 			);
 			path = Atmo;
+			sourceTree = "<group>";
+		};
+		9CFC2A6D21A9D53F0022C275 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C8F6F2121A2AA56007469B7 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,16 +225,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/LatLongToTimezone/LatLongToTimezone.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMoment/SwiftMoment.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LatLongToTimezone.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMoment.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CFC2A6821A9B1E20022C275 /* CityTableViewCell.swift in Sources */,
+				9CFC2A6F21A9D60F0022C275 /* AddCityViewController.swift in Sources */,
+				9CFC2A6821A9B1E20022C275 /* CitiesListTableCell.swift in Sources */,
 				9C27373021A1A8F000FBCA5C /* Weather.swift in Sources */,
 				9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */,
 				9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */,
@@ -261,6 +274,7 @@
 				9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */,
 				9CCE2B2C218CB66300ADC679 /* AppDelegate.swift in Sources */,
 				9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */,
+				9CCFCF0121AAEB9A008728DD /* Cities.xcdatamodeld in Sources */,
 				9C27372E21A1A80D00FBCA5C /* Constains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +481,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9CCFCF0021AAEB9A008728DD /* Cities.xcdatamodel */,
+			);
+			currentVersion = 9CCFCF0021AAEB9A008728DD /* Cities.xcdatamodel */;
+			path = Cities.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9CCE2B20218CB66300ADC679 /* Project object */;
 }
