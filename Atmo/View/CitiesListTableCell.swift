@@ -12,4 +12,5 @@ class CitiesListTableCell: UITableViewCell {
     @IBOutlet weak var cityTitleLabel: UILabel!
     @IBOutlet weak var conditionIcon: UIImageView!
     
+    @IBOutlet weak var tempLabel: UILabel!
 }

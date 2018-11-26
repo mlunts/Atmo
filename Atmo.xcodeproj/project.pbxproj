@@ -19,6 +19,7 @@
 		9CCE2B31218CB66300ADC679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B2F218CB66300ADC679 /* Main.storyboard */; };
 		9CCE2B36218CB66600ADC679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B34218CB66600ADC679 /* LaunchScreen.storyboard */; };
 		9CCFCF0121AAEB9A008728DD /* Cities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */; };
+		9CCFCF0321AB28F2008728DD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFCF0221AB28F2008728DD /* Service.swift */; };
 		9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */; };
 		9CFC2A6821A9B1E20022C275 /* CitiesListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */; };
 		9CFC2A6F21A9D60F0022C275 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */; };
@@ -40,6 +41,7 @@
 		9CCE2B35218CB66600ADC679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CCE2B37218CB66600ADC679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CCFCF0021AAEB9A008728DD /* Cities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cities.xcdatamodel; sourceTree = "<group>"; };
+		9CCFCF0221AB28F2008728DD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListTableViewController.swift; sourceTree = "<group>"; };
 		9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CitiesListTableCell.swift; path = Atmo/View/CitiesListTableCell.swift; sourceTree = SOURCE_ROOT; };
 		9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +82,9 @@
 			children = (
 				9C27372D21A1A80D00FBCA5C /* Constains.swift */,
 				9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */,
-				9C27372F21A1A8F000FBCA5C /* Weather.swift */,
 				9C8F6F1F21A29C38007469B7 /* City.swift */,
+				9C27372F21A1A8F000FBCA5C /* Weather.swift */,
+				9CCFCF0221AB28F2008728DD /* Service.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				9C27373021A1A8F000FBCA5C /* Weather.swift in Sources */,
 				9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */,
 				9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */,
+				9CCFCF0321AB28F2008728DD /* Service.swift in Sources */,
 				9C8F6F2021A29C38007469B7 /* City.swift in Sources */,
 				9CCE2B2E218CB66300ADC679 /* ViewController.swift in Sources */,
 				9CCE2B2C218CB66300ADC679 /* AppDelegate.swift in Sources */,

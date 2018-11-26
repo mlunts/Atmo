@@ -8,12 +8,17 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 class CitiesListTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    let service = Service()
+    
     var cities: [CityModel] = []
+    var weatherCities = [Weather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +40,28 @@ class CitiesListTableViewController: UITableViewController {
             as! CitiesListTableCell
         
         let city = cities[indexPath.row]
-        
+       
         cell.cityTitleLabel.text = city.cityTitle
-    
+        cell.tempLabel.text = "\(city.temp)°"
+        cell.conditionIcon.image = UIImage(named: city.conditionIcon ?? "fog")
         return cell
     }
     
     func getData() {
         do {
             cities = try context.fetch(CityModel.fetchRequest())
+            for city in cities {
+                service.getCityByName(city: city, tableView: tableView)
+                
+            }
         }
         catch {
             print("Fetching Failed")
         }
     }
+    
+    
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

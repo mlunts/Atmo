@@ -9,7 +9,7 @@
 import UIKit
 
 class Weather {
-    
+    var city = City()
     //Переменные модели
     var temperature : Int = 0
     var temperatureMax : Int = 0
@@ -112,7 +112,7 @@ class Weather {
             case 6..<18 :
                 return "snowy"
             default :
-                return "night-snoq"
+                return "night-snow"
             }
             
         case 701...741 : //туман

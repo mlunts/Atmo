@@ -15,6 +15,7 @@ import SwiftyJSON
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     let locationManager = CLLocationManager()
+    let service = Service()
     let weatherDataModel = Weather()
     let city = City()
     var forecast = [Weather]()
@@ -135,35 +136,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
                 
-                self.updateWeatherData(json: weatherJSON)
+                self.service.updateWeatherData(json: weatherJSON, city: self.city, weatherDataModel: self.weatherDataModel, cityLabel: self.cityLabel)
+                self.updateUI()
             }
             else {
                 self.cityLabel.text = "Погода недоступна"
             }
         }
     }
-    
-    func updateWeatherData(json : JSON) {
-        if let tempResult = json["main"]["temp"].double {
-            city.cityName = json["name"].stringValue
-            weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
-            print("DFDFDF - \(weatherDataModel.hour)")
-            weatherDataModel.temperature =  Int(tempResult - 273.15)
-            weatherDataModel.condition = json["weather"][0]["id"].intValue
-            weatherDataModel.conditionText = json["weather"][0]["description"].stringValue
-            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
-            weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
-            weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
-            weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
-            weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
-            weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
-            
-            updateUI()
-            
-        } else {
-            cityLabel.text = "Weather unavailable"
-        }
-    }
+
     
     func updateForecastData(json : JSON) {
             for i in 0...4 {
