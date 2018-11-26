@@ -15,6 +15,8 @@ class CitiesListTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var cityToBeSent: String = ""
+    
     let service = Service()
     
     var cities: [CityModel] = []
@@ -60,8 +62,11 @@ class CitiesListTableViewController: UITableViewController {
         }
     }
     
-    
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cityToBeSent = cities[indexPath.row].cityTitle ?? "Odessa"
+        
+        performSegue(withIdentifier: "selectedCityWeather", sender: nil)
+    }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -79,6 +84,10 @@ class CitiesListTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let CWeather = segue.destination as! ViewController
+        CWeather.selectedCity = cityToBeSent
+    }
     
 }
 

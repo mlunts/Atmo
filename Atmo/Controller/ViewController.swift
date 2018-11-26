@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreLocation
 import Alamofire
 import SwiftyJSON
@@ -22,6 +23,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var dates = generateDates(startDate: Date(), addbyUnit: .day, value: 5)
     let dateFormatter = DateFormatter()
     
+    var selectedCity: String = "London"
+    
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
     
@@ -33,15 +36,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     
-    
     @IBOutlet weak var thisTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(selectedCity)
+        
+        getDataByCity()
+        
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "dd MMMM"
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        thisTableView?.dataSource = self
+        thisTableView?.delegate = self
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(forecast.count)
         return forecast.count
     }
     
@@ -66,47 +88,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         return cell
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getLocation()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "dd MMMM"
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        thisTableView?.dataSource = self
-        thisTableView?.delegate = self
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    func getLocation() {
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
+    func getDataByCity() {
+        city.cityName = selectedCity
+        getCoordinateFrom(address: city.cityName) { coordinate, error in
+            guard let coordinate = coordinate, error == nil else { return }
+            // don't forget to update the UI from the main thread
+            DispatchQueue.main.async {
+                self.city.coordinates = coordinate
+                
+            }
         }
-        
-        let location = locationManager.location?.coordinate
-        
-        locationManager.stopUpdatingLocation()
-        
-        let latitude = String(location!.latitude)
-        let longitude = String(location!.longitude)
-        
-        let params : [String : String] = ["lat" : latitude, "lon" : longitude, "lang" : "ru", "appid" : APP_ID]
-        
-        city.coordinates = location
-        city.setTimeZone()
-        
+        city.setCoordinatesByCity(selectedCity: selectedCity)
+        let params : [String : String] = ["q" : selectedCity, "lang" : "ru", "appid" : APP_ID]
         getWeatherData(url: WEATHER_URL, parameters: params)
         getForecastData(url: FORECAST_URL, parameters: params)
-        
+    }
+    
+    
+    func getCoordinateFrom(address: String, completion: @escaping(_ coordinate: CLLocationCoordinate2D?, _ error: Error?) -> () ) {
+        CLGeocoder().geocodeAddressString(address) { placemarks, error in
+            completion(placemarks?.first?.location?.coordinate, error)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -116,12 +118,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     
     func getForecastData(url: String, parameters: [String : String]) {
-        
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
                 let forecastJSON : JSON = JSON(response.result.value!)
-                print(forecastJSON)
                 self.updateForecastData(json: forecastJSON)
             }
         }
@@ -152,16 +152,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 let j = 7*(i+1)
                 weather.hour = Calendar.current.component(.hour, from: Date())
                 weather.temperatureMax = Int(json["list"][j]["main"]["temp_max"].double! - 273.15)
-                print( weather.temperatureMax)
                 weather.temperatureMin = Int(json["list"][2*i]["main"]["temp_min"].double! - 273.15)
-                print( weather.temperatureMin)
                 weather.conditionText = json["list"][j]["weather"][0]["description"].stringValue
                 weather.condition = json["list"][j]["weather"][0]["id"].intValue
                 weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
                 forecast.append(weather)
                 self.thisTableView.reloadData()
             }
-        
     }
     
     func updateUI() {
@@ -174,7 +171,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         windSpeedLabel.text = "\(weatherDataModel.windSpeed) км/ч"
         sunriseLabel.text = "\(weatherDataModel.sunriseHour)"
         sunsetLabel.text = "\(weatherDataModel.sunsetHour)"
-        
     }
     
 }

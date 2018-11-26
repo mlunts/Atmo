@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class AddCityViewController: UIViewController {
 
     @IBOutlet weak var taskTextField: UITextField!

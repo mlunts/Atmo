@@ -24,7 +24,7 @@ class Service: NSObject {
                 print("Success")
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
-                //                print(weatherJSON)
+                
                 if let tempResult = weatherJSON["main"]["temp"].double {
                     let w = Weather()
                     w.hour = Calendar.current.component(.hour, from: Date())
@@ -63,4 +63,6 @@ class Service: NSObject {
             cityLabel.text = "Weather unavailable"
         }
     }
+    
+    
 }
