@@ -24,6 +24,7 @@ class Service: NSObject {
                 print("Success")
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
+                print(weatherJSON)
                 
                 if let tempResult = weatherJSON["main"]["temp"].double {
                     let w = Weather()
@@ -32,7 +33,6 @@ class Service: NSObject {
                     city.setValue(w.updateWeatherIcon(condition: weatherJSON["weather"][0]["id"].intValue)
                         , forKey: "conditionIcon")
                     
-                    //  self.weatherCities.append(weatherDataModel)
                     tableView.reloadData()
                 }
             }
@@ -55,14 +55,28 @@ class Service: NSObject {
             weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
             weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
             weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
-            weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
-            weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
-           
+            if city.timeZone == nil {
+                weatherDataModel.sunriseHour = "7:21"
+                weatherDataModel.sunsetHour = "16:58"
+            } else {
+                weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
+                weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
+            }
+            weatherDataModel.humidity = json["main"]["humidity"].intValue
+            weatherDataModel.cloudness = json["clouds"]["all"].intValue
             
         } else {
             cityLabel.text = "Weather unavailable"
         }
     }
     
+    func getForecastDay(weather : Weather, j : Int, i : Int, json : JSON) {
+        weather.hour = Calendar.current.component(.hour, from: Date())
+        weather.temperatureMax = Int(json["list"][j]["main"]["temp_max"].double! - 273.15)
+        weather.temperatureMin = Int(json["list"][2*i]["main"]["temp_min"].double! - 273.15)
+        weather.conditionText = json["list"][j]["weather"][0]["description"].stringValue
+        weather.condition = json["list"][j]["weather"][0]["id"].intValue
+        weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
+    }
     
 }

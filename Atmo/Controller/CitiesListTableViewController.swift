@@ -85,8 +85,11 @@ class CitiesListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "selectedCityWeather") {
         let CWeather = segue.destination as! ViewController
         CWeather.selectedCity = cityToBeSent
+        }
+        
     }
     
 }

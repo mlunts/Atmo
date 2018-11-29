@@ -23,7 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var dates = generateDates(startDate: Date(), addbyUnit: .day, value: 5)
     let dateFormatter = DateFormatter()
     
-    var selectedCity: String = "London"
+    var selectedCity: String = "Odessa"
     
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -35,6 +35,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var cloudnessLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
     
     @IBOutlet weak var thisTableView: UITableView!
     
@@ -92,7 +94,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         city.cityName = selectedCity
         getCoordinateFrom(address: city.cityName) { coordinate, error in
             guard let coordinate = coordinate, error == nil else { return }
-            // don't forget to update the UI from the main thread
             DispatchQueue.main.async {
                 self.city.coordinates = coordinate
                 
@@ -101,6 +102,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         city.setCoordinatesByCity(selectedCity: selectedCity)
         let params : [String : String] = ["q" : selectedCity, "lang" : "ru", "appid" : APP_ID]
         getWeatherData(url: WEATHER_URL, parameters: params)
+        
         getForecastData(url: FORECAST_URL, parameters: params)
     }
     
@@ -135,7 +137,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 print("Success")
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
-                
+                print(weatherJSON)
                 self.service.updateWeatherData(json: weatherJSON, city: self.city, weatherDataModel: self.weatherDataModel, cityLabel: self.cityLabel)
                 self.updateUI()
             }
@@ -150,12 +152,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             for i in 0...4 {
                 let weather = Weather()
                 let j = 7*(i+1)
-                weather.hour = Calendar.current.component(.hour, from: Date())
-                weather.temperatureMax = Int(json["list"][j]["main"]["temp_max"].double! - 273.15)
-                weather.temperatureMin = Int(json["list"][2*i]["main"]["temp_min"].double! - 273.15)
-                weather.conditionText = json["list"][j]["weather"][0]["description"].stringValue
-                weather.condition = json["list"][j]["weather"][0]["id"].intValue
-                weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
+                service.getForecastDay(weather: weather, j: j, i: i, json: json)
                 forecast.append(weather)
                 self.thisTableView.reloadData()
             }
@@ -171,6 +168,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         windSpeedLabel.text = "\(weatherDataModel.windSpeed) км/ч"
         sunriseLabel.text = "\(weatherDataModel.sunriseHour)"
         sunsetLabel.text = "\(weatherDataModel.sunsetHour)"
+        humidityLabel.text = "\(weatherDataModel.humidity)%"
+        cloudnessLabel.text = "\(weatherDataModel.cloudness )%"
     }
     
 }

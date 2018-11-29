@@ -23,6 +23,8 @@ class Weather {
     var sunriseHour : String = ""
     var sunsetHour : String = ""
     var hour : Int = 0
+    var cloudness : Int = 100
+    var humidity : Int = 100
     
     func updateBackground(condition: Int) -> String {
         switch (condition) {
