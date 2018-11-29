@@ -10,6 +10,7 @@ import UIKit
 
 class Weather {
     var city = City()
+    
     //Переменные модели
     var temperature : Int = 0
     var temperatureMax : Int = 0

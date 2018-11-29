@@ -30,8 +30,7 @@ class Service: NSObject {
                     let w = Weather()
                     w.hour = Calendar.current.component(.hour, from: Date())
                     city.setValue(Int16(Int(tempResult - 273.15)), forKey: "temp")
-                    city.setValue(w.updateWeatherIcon(condition: weatherJSON["weather"][0]["id"].intValue)
-                        , forKey: "conditionIcon")
+                    city.setValue(w.updateWeatherIcon(condition: weatherJSON["weather"][0]["id"].intValue), forKey: "conditionIcon")
                     
                     tableView.reloadData()
                 }
@@ -47,6 +46,7 @@ class Service: NSObject {
     func updateWeatherData(json : JSON, city : City, weatherDataModel : Weather, cityLabel : UILabel) {
         if let tempResult = json["main"]["temp"].double {
             city.cityName = json["name"].stringValue
+            city.setTimeZone(coord: city.coordinates)
             weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
             weatherDataModel.temperature =  Int(tempResult - 273.15)
             weatherDataModel.condition = json["weather"][0]["id"].intValue

@@ -18,8 +18,8 @@ class City {
     var timeZone : TimeZone!
     var localHours : Int!
     
-    func setTimeZone() {
-        self.timeZone = TimezoneMapper.latLngToTimezone(coordinates)
+    func setTimeZone(coord : CLLocationCoordinate2D) {
+        self.timeZone = TimezoneMapper.latLngToTimezone(coord)
     }
     
     func setCoordinatesByCity(selectedCity : String) {
@@ -29,12 +29,16 @@ class City {
             if response.result.isSuccess {
                 let placeJSON : JSON = JSON(response.result.value!)
                 print(placeJSON)
-                self.coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(placeJSON["result"][0]["geometry"]["location"]["lat"].floatValue), longitude: CLLocationDegrees(placeJSON["result"][0]["geometry"]["location"]["lng"].floatValue))
-                self.setTimeZone()
+                self.coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(placeJSON["results"][0]["geometry"]["location"]["lat"].floatValue), longitude: CLLocationDegrees(placeJSON["results"][0]["geometry"]["location"]["lng"].floatValue))
+                self.setTimeZone(coord: self.coordinates)
+                print(placeJSON["results"][0]["geometry"]["location"]["lng"].floatValue)
+                print(self.coordinates)
+                print(self.timeZone)
             } else {
                 print("error")
             }
         }
+        print(self.coordinates)
     }
     
 }

@@ -21,7 +21,6 @@ class AddCityViewController: UIViewController {
         
         let city = CityModel(context: context)
         city.cityTitle = taskTextField.text!
-        // Save the data to coredata
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         let _ = navigationController?.popViewController(animated: true)

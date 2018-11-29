@@ -92,14 +92,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     func getDataByCity() {
         city.cityName = selectedCity
-        getCoordinateFrom(address: city.cityName) { coordinate, error in
-            guard let coordinate = coordinate, error == nil else { return }
-            DispatchQueue.main.async {
-                self.city.coordinates = coordinate
-                
-            }
-        }
         city.setCoordinatesByCity(selectedCity: selectedCity)
+        print(city.coordinates)
         let params : [String : String] = ["q" : selectedCity, "lang" : "ru", "appid" : APP_ID]
         getWeatherData(url: WEATHER_URL, parameters: params)
         
@@ -146,16 +140,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             }
         }
     }
-
+    
     
     func updateForecastData(json : JSON) {
-            for i in 0...4 {
-                let weather = Weather()
-                let j = 7*(i+1)
-                service.getForecastDay(weather: weather, j: j, i: i, json: json)
-                forecast.append(weather)
-                self.thisTableView.reloadData()
-            }
+        for i in 0...4 {
+            let weather = Weather()
+            let j = 7*(i+1)
+            service.getForecastDay(weather: weather, j: j, i: i, json: json)
+            forecast.append(weather)
+            self.thisTableView.reloadData()
+        }
     }
     
     func updateUI() {

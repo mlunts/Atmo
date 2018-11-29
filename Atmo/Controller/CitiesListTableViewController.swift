@@ -42,7 +42,7 @@ class CitiesListTableViewController: UITableViewController {
             as! CitiesListTableCell
         
         let city = cities[indexPath.row]
-       
+        
         cell.cityTitleLabel.text = city.cityTitle
         cell.tempLabel.text = "\(city.temp)°"
         cell.conditionIcon.image = UIImage(named: city.conditionIcon ?? "fog")
@@ -86,8 +86,8 @@ class CitiesListTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "selectedCityWeather") {
-        let CWeather = segue.destination as! ViewController
-        CWeather.selectedCity = cityToBeSent
+            let CWeather = segue.destination as! ViewController
+            CWeather.selectedCity = cityToBeSent
         }
         
     }
