@@ -131,7 +131,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 print("Success")
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
-                print(weatherJSON)
                 self.service.updateWeatherData(json: weatherJSON, city: self.city, weatherDataModel: self.weatherDataModel, cityLabel: self.cityLabel)
                 self.updateUI()
             }

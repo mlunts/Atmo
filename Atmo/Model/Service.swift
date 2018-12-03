@@ -24,7 +24,6 @@ class Service: NSObject {
                 print("Success")
                 
                 let weatherJSON : JSON = JSON(response.result.value!)
-                print(weatherJSON)
                 
                 if let tempResult = weatherJSON["main"]["temp"].double {
                     let w = Weather()
@@ -39,15 +38,22 @@ class Service: NSObject {
                 //                cityLabel.text = "Weather unavailable"
             }
         }
-        print(city.temp)
-        
     }
     
     func updateWeatherData(json : JSON, city : City, weatherDataModel : Weather, cityLabel : UILabel) {
         if let tempResult = json["main"]["temp"].double {
             city.cityName = json["name"].stringValue
-            city.setTimeZone(coord: city.coordinates)
-            weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
+            if city.coordinates == nil {
+                weatherDataModel.sunriseHour = "7:21"
+                weatherDataModel.sunsetHour = "16:58"
+                weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
+            } else {
+                city.setTimeZone(coord: city.coordinates)
+                weatherDataModel.hour = Int(weatherDataModel.setTime(timeZone: city.timeZone, interval:  Int(NSDate().timeIntervalSince1970)))!
+                weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
+                weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
+            }
+            
             weatherDataModel.temperature =  Int(tempResult - 273.15)
             weatherDataModel.condition = json["weather"][0]["id"].intValue
             weatherDataModel.conditionText = json["weather"][0]["description"].stringValue
@@ -55,13 +61,6 @@ class Service: NSObject {
             weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
             weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
             weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
-            if city.timeZone == nil {
-                weatherDataModel.sunriseHour = "7:21"
-                weatherDataModel.sunsetHour = "16:58"
-            } else {
-                weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
-                weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
-            }
             weatherDataModel.humidity = json["main"]["humidity"].intValue
             weatherDataModel.cloudness = json["clouds"]["all"].intValue
             
@@ -69,6 +68,7 @@ class Service: NSObject {
             cityLabel.text = "Weather unavailable"
         }
     }
+    
     
     func getForecastDay(weather : Weather, j : Int, i : Int, json : JSON) {
         weather.hour = Calendar.current.component(.hour, from: Date())

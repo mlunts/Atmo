@@ -162,4 +162,13 @@ class Weather {
         let i: Int = Int((degree + 33.75)/45)
         return directions[i % 8]
     }
+    
+    func setTime(timeZone: TimeZone, interval: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(interval))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = timeZone
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HH"
+        return dateFormatter.string(from: date)
+    }
 }

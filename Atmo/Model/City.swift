@@ -23,10 +23,12 @@ class City {
     }
     
     func setCoordinatesByCity(selectedCity : String) {
+        print("fdfdfdf")
         let parameters : [String : String] = ["address" : selectedCity, "region" : "ua",  "key" : PLACES_API]
         Alamofire.request(PLACES_URL, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
+                print("fdfdfdfddddddddddddd")
                 let placeJSON : JSON = JSON(response.result.value!)
                 print(placeJSON)
                 self.coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(placeJSON["results"][0]["geometry"]["location"]["lat"].floatValue), longitude: CLLocationDegrees(placeJSON["results"][0]["geometry"]["location"]["lng"].floatValue))
