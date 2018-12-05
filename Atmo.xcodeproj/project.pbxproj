@@ -16,6 +16,7 @@
 		9C3467FA21B5815000296C24 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3467F921B5815000296C24 /* SwiftyJSON.framework */; };
 		9C3467FB21B5818600296C24 /* Pods_Atmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F7B6BCFED50A866798F71E /* Pods_Atmo.framework */; };
 		9C3467FC21B592DF00296C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C27372621A1A2ED00FBCA5C /* Assets.xcassets */; };
+		9C34680421B6E7A400296C24 /* AtmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34680321B6E7A400296C24 /* AtmoTests.swift */; };
 		9C8F6F2021A29C38007469B7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F1F21A29C38007469B7 /* City.swift */; };
 		9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2121A2AA56007469B7 /* Extensions.swift */; };
 		9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */; };
@@ -36,6 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9C34680621B6E7A400296C24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CCE2B20218CB66300ADC679 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9CCE2B27218CB66300ADC679;
+			remoteInfo = Atmo;
+		};
 		9C9E777721B3DEB60042659B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9CCE2B20218CB66300ADC679 /* Project object */;
@@ -70,6 +78,9 @@
 		9C3467F521B57C6600296C24 /* WidgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetService.swift; sourceTree = "<group>"; };
 		9C3467F721B5814700296C24 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C3467F921B5815000296C24 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C34680121B6E7A400296C24 /* AtmoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtmoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C34680321B6E7A400296C24 /* AtmoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmoTests.swift; sourceTree = "<group>"; };
+		9C34680521B6E7A400296C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C8F6F1F21A29C38007469B7 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		9C8F6F2121A2AA56007469B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = forecastViewCell.swift; path = Atmo/View/forecastViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -94,6 +105,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9C3467FE21B6E7A400296C24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C9E776A21B3DEB50042659B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +190,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		9C34680221B6E7A400296C24 /* AtmoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9C34680321B6E7A400296C24 /* AtmoTests.swift */,
+				9C34680521B6E7A400296C24 /* Info.plist */,
+			);
+			path = AtmoTests;
+			sourceTree = "<group>";
+		};
 		9C9E777021B3DEB60042659B /* WeatherExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +215,7 @@
 			children = (
 				9CCE2B2A218CB66300ADC679 /* Atmo */,
 				9C9E777021B3DEB60042659B /* WeatherExtension */,
+				9C34680221B6E7A400296C24 /* AtmoTests */,
 				9CCE2B29218CB66300ADC679 /* Products */,
 				697C06E98E8D748AD4B29C62 /* Pods */,
 				1DA35BA29ECE1BCCD0017D96 /* Frameworks */,
@@ -199,6 +227,7 @@
 			children = (
 				9CCE2B28218CB66300ADC679 /* Atmo.app */,
 				9C9E776D21B3DEB50042659B /* WeatherExtension.appex */,
+				9C34680121B6E7A400296C24 /* AtmoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,6 +258,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9C34680021B6E7A400296C24 /* AtmoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C34680A21B6E7A400296C24 /* Build configuration list for PBXNativeTarget "AtmoTests" */;
+			buildPhases = (
+				9C3467FD21B6E7A400296C24 /* Sources */,
+				9C3467FE21B6E7A400296C24 /* Frameworks */,
+				9C3467FF21B6E7A400296C24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C34680721B6E7A400296C24 /* PBXTargetDependency */,
+			);
+			name = AtmoTests;
+			productName = AtmoTests;
+			productReference = 9C34680121B6E7A400296C24 /* AtmoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9C9E776C21B3DEB50042659B /* WeatherExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C9E777C21B3DEB60042659B /* Build configuration list for PBXNativeTarget "WeatherExtension" */;
@@ -278,6 +325,10 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = earine;
 				TargetAttributes = {
+					9C34680021B6E7A400296C24 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 9CCE2B27218CB66300ADC679;
+					};
 					9C9E776C21B3DEB50042659B = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -301,11 +352,19 @@
 			targets = (
 				9CCE2B27218CB66300ADC679 /* Atmo */,
 				9C9E776C21B3DEB50042659B /* WeatherExtension */,
+				9C34680021B6E7A400296C24 /* AtmoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9C3467FF21B6E7A400296C24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C9E776B21B3DEB50042659B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,6 +450,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9C3467FD21B6E7A400296C24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C34680421B6E7A400296C24 /* AtmoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C9E776921B3DEB50042659B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +489,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9C34680721B6E7A400296C24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9CCE2B27218CB66300ADC679 /* Atmo */;
+			targetProxy = 9C34680621B6E7A400296C24 /* PBXContainerItemProxy */;
+		};
 		9C9E777821B3DEB60042659B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9C9E776C21B3DEB50042659B /* WeatherExtension */;
@@ -457,6 +529,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9C34680821B6E7A400296C24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BV7G443SR;
+				INFOPLIST_FILE = AtmoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.earine.AtmoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Atmo.app/Atmo";
+			};
+			name = Debug;
+		};
+		9C34680921B6E7A400296C24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BV7G443SR;
+				INFOPLIST_FILE = AtmoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.earine.AtmoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Atmo.app/Atmo";
+			};
+			name = Release;
+		};
 		9C9E777A21B3DEB60042659B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE92B2EF9F7F4FF31187E25D /* Pods-WeatherExtension.debug.xcconfig */;
@@ -625,6 +739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7BV7G443SR;
 				INFOPLIST_FILE = Atmo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -647,6 +762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7BV7G443SR;
 				INFOPLIST_FILE = Atmo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -664,6 +780,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9C34680A21B6E7A400296C24 /* Build configuration list for PBXNativeTarget "AtmoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C34680821B6E7A400296C24 /* Debug */,
+				9C34680921B6E7A400296C24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9C9E777C21B3DEB60042659B /* Build configuration list for PBXNativeTarget "WeatherExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

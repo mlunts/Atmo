@@ -54,7 +54,6 @@ class CitiesListTableViewController: UITableViewController {
             cities = try context.fetch(CityModel.fetchRequest())
             for city in cities {
                 service.getCityByName(city: city, tableView: tableView)
-                
             }
         }
         catch {

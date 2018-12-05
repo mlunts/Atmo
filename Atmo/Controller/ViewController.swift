@@ -60,7 +60,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         return .lightContent
     }
     
-    
+    func selectedCitySet(s : String) {
+        selectedCity = s
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
