@@ -93,9 +93,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func getDataByCity() {
-        city.cityName = selectedCity
-        city.setCoordinatesByCity(selectedCity: selectedCity)
-        print(city.coordinates)
+//        city.cityName = selectedCity
+        city.setCoordinatesByCity(selectedCity: selectedCity, city : city, label : cityLabel)
+        print("////")
+        print(city.cityName)
+        print("/////")
         let params : [String : String] = ["q" : selectedCity, "lang" : "ru", "appid" : APP_ID]
         getWeatherData(url: WEATHER_URL, parameters: params)
         
@@ -154,7 +156,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func updateUI() {
-        cityLabel.text = city.cityName
+        
         temperatureLabel.text = "\(weatherDataModel.temperature)°"
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
         backgroundImage.image = UIImage(named: weatherDataModel.backgroundName)

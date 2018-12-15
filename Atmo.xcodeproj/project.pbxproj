@@ -17,6 +17,7 @@
 		9C3467FB21B5818600296C24 /* Pods_Atmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F7B6BCFED50A866798F71E /* Pods_Atmo.framework */; };
 		9C3467FC21B592DF00296C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C27372621A1A2ED00FBCA5C /* Assets.xcassets */; };
 		9C34680421B6E7A400296C24 /* AtmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34680321B6E7A400296C24 /* AtmoTests.swift */; };
+		9C737E5121C50C2B009717BC /* SearchTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C737E5021C50C2B009717BC /* SearchTextField.framework */; };
 		9C8F6F2021A29C38007469B7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F1F21A29C38007469B7 /* City.swift */; };
 		9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2121A2AA56007469B7 /* Extensions.swift */; };
 		9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */; };
@@ -30,6 +31,7 @@
 		9CCE2B36218CB66600ADC679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CCE2B34218CB66600ADC679 /* LaunchScreen.storyboard */; };
 		9CCFCF0121AAEB9A008728DD /* Cities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFCEFF21AAEB9A008728DD /* Cities.xcdatamodeld */; };
 		9CCFCF0321AB28F2008728DD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFCF0221AB28F2008728DD /* Service.swift */; };
+		9CE89C3C21C5131F00B76F05 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CE89C3B21C5131F00B76F05 /* cities.json */; };
 		9CFC2A6621A9AC210022C275 /* CitiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */; };
 		9CFC2A6821A9B1E20022C275 /* CitiesListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */; };
 		9CFC2A6F21A9D60F0022C275 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */; };
@@ -81,6 +83,7 @@
 		9C34680121B6E7A400296C24 /* AtmoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtmoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C34680321B6E7A400296C24 /* AtmoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmoTests.swift; sourceTree = "<group>"; };
 		9C34680521B6E7A400296C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C737E5021C50C2B009717BC /* SearchTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SearchTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F6F1F21A29C38007469B7 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		9C8F6F2121A2AA56007469B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = forecastViewCell.swift; path = Atmo/View/forecastViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -97,6 +100,10 @@
 		9CCE2B37218CB66600ADC679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CCFCF0021AAEB9A008728DD /* Cities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cities.xcdatamodel; sourceTree = "<group>"; };
 		9CCFCF0221AB28F2008728DD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9CE89C3B21C5131F00B76F05 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		9CE89C3D21C5772100B76F05 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		9CE89C3E21C5772200B76F05 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9CE89C3F21C5772200B76F05 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		9CFC2A6521A9AC210022C275 /* CitiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListTableViewController.swift; sourceTree = "<group>"; };
 		9CFC2A6721A9B1E20022C275 /* CitiesListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CitiesListTableCell.swift; path = Atmo/View/CitiesListTableCell.swift; sourceTree = SOURCE_ROOT; };
 		9CFC2A6E21A9D60F0022C275 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C737E5121C50C2B009717BC /* SearchTextField.framework in Frameworks */,
 				8A5A4A5582411483E3EB60CC /* Pods_Atmo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +146,7 @@
 		1DA35BA29ECE1BCCD0017D96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C737E5021C50C2B009717BC /* SearchTextField.framework */,
 				9C3467F921B5815000296C24 /* SwiftyJSON.framework */,
 				9C3467F721B5814700296C24 /* Alamofire.framework */,
 				14F7B6BCFED50A866798F71E /* Pods_Atmo.framework */,
@@ -250,6 +259,7 @@
 		9CFC2A6D21A9D53F0022C275 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9CE89C3B21C5131F00B76F05 /* cities.json */,
 				9C8F6F2121A2AA56007469B7 /* Extensions.swift */,
 			);
 			path = Extensions;
@@ -304,6 +314,7 @@
 				9CCE2B26218CB66300ADC679 /* Resources */,
 				C7AACF2CC7FDCDE6B9EB7C89 /* [CP] Embed Pods Frameworks */,
 				9C9E777D21B3DEB60042659B /* Embed App Extensions */,
+				784BAA80A7E4146064EFD62C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,7 +353,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 9CCE2B1F218CB66300ADC679;
@@ -378,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE89C3C21C5131F00B76F05 /* cities.json in Resources */,
 				9CCE2B36218CB66600ADC679 /* LaunchScreen.storyboard in Resources */,
 				9C27372721A1A2ED00FBCA5C /* Assets.xcassets in Resources */,
 				9CCE2B31218CB66300ADC679 /* Main.storyboard in Resources */,
@@ -405,6 +416,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		784BAA80A7E4146064EFD62C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		934F70904D87ECDF44523A8A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,16 +459,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/LatLongToTimezone/LatLongToTimezone.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS12.0/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.1/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS12.1/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LatLongToTimezone.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +537,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9C9E777421B3DEB60042659B /* Base */,
+				9CE89C3F21C5772200B76F05 /* ru */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -514,6 +546,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9CCE2B30218CB66300ADC679 /* Base */,
+				9CE89C3D21C5772100B76F05 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -522,6 +555,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9CCE2B35218CB66600ADC679 /* Base */,
+				9CE89C3E21C5772200B76F05 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -619,6 +653,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -680,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

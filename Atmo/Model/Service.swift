@@ -42,7 +42,7 @@ class Service: NSObject {
     
     func updateWeatherData(json : JSON, city : City, weatherDataModel : Weather, cityLabel : UILabel) {
         if let tempResult = json["main"]["temp"].double {
-            city.cityName = json["name"].stringValue
+//            city.cityName = json["name"].stringValue
             if city.coordinates == nil {
                 weatherDataModel.sunriseHour = "7:21"
                 weatherDataModel.sunsetHour = "16:58"

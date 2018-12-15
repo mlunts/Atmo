@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "5"; ObjectID = "0Wk-94-99g"; */
+"0Wk-94-99g.text" = "5";
+
+/* Class = "UILabel"; text = "Ветер:"; ObjectID = "1Q6-Jb-Nop"; */
+"1Q6-Jb-Nop.text" = "Ветер:";
+
+/* Class = "UILabel"; text = "Condition"; ObjectID = "3Jf-gt-1Pn"; */
+"3Jf-gt-1Pn.text" = "Condition";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3uz-LX-Gxq"; */
+"3uz-LX-Gxq.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5Dz-mu-7m5"; */
+"5Dz-mu-7m5.text" = "Label";
+
+/* Class = "UILabel"; text = "09:24"; ObjectID = "9J1-XG-1I7"; */
+"9J1-XG-1I7.text" = "09:24";
+
+/* Class = "UILabel"; text = "73%"; ObjectID = "DL8-fL-nL6"; */
+"DL8-fL-nL6.text" = "73%";
+
+/* Class = "UIButton"; normalTitle = "ДОБАВИТЬ"; ObjectID = "FB1-8m-XZI"; */
+"FB1-8m-XZI.normalTitle" = "ДОБАВИТЬ";
+
+/* Class = "UILabel"; text = "Рассвет:"; ObjectID = "FFV-iy-Ydu"; */
+"FFV-iy-Ydu.text" = "Рассвет:";
+
+/* Class = "UILabel"; text = "Закат:"; ObjectID = "IFE-iK-suR"; */
+"IFE-iK-suR.text" = "Закат:";
+
+/* Class = "UILabel"; text = "Город"; ObjectID = "J7z-Eu-9M4"; */
+"J7z-Eu-9M4.text" = "Город";
+
+/* Class = "UILabel"; text = "Влажность"; ObjectID = "M1m-Ls-94u"; */
+"M1m-Ls-94u.text" = "Влажность";
+
+/* Class = "UILabel"; text = "Скорость ветра:"; ObjectID = "PdS-Rr-W2f"; */
+"PdS-Rr-W2f.text" = "Скорость ветра:";
+
+/* Class = "UINavigationItem"; title = "Города"; ObjectID = "R14-gI-IBH"; */
+"R14-gI-IBH.title" = "Города";
+
+/* Class = "UILabel"; text = "09:24"; ObjectID = "RED-Nu-D6C"; */
+"RED-Nu-D6C.text" = "09:24";
+
+/* Class = "UILabel"; text = "Облачность:"; ObjectID = "THb-ws-gQM"; */
+"THb-ws-gQM.text" = "Облачность:";
+
+/* Class = "UILabel"; text = "Temperature"; ObjectID = "Unz-Bb-Xfo"; */
+"Unz-Bb-Xfo.text" = "Temperature";
+
+/* Class = "UILabel"; text = "Юго-Восточный"; ObjectID = "VqL-Gl-MdI"; */
+"VqL-Gl-MdI.text" = "Юго-Восточный";
+
+/* Class = "UILabel"; text = "09:24"; ObjectID = "YaG-4h-wXP"; */
+"YaG-4h-wXP.text" = "09:24";
+
+/* Class = "UITextField"; placeholder = "Введите название города"; ObjectID = "ZS3-EU-lBY"; */
+"ZS3-EU-lBY.placeholder" = "Введите название города";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "kgj-kZ-pGB"; */
+"kgj-kZ-pGB.text" = "5";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qJV-Pk-hXE"; */
+"qJV-Pk-hXE.text" = "Label";
+
+/* Class = "UILabel"; text = "73%"; ObjectID = "uz5-CW-au7"; */
+"uz5-CW-au7.text" = "73%";
+
+/* Class = "UILabel"; text = "Дата"; ObjectID = "wzh-yU-9eS"; */
+"wzh-yU-9eS.text" = "Дата";
