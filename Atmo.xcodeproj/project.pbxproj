@@ -17,7 +17,6 @@
 		9C3467FB21B5818600296C24 /* Pods_Atmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F7B6BCFED50A866798F71E /* Pods_Atmo.framework */; };
 		9C3467FC21B592DF00296C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C27372621A1A2ED00FBCA5C /* Assets.xcassets */; };
 		9C34680421B6E7A400296C24 /* AtmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34680321B6E7A400296C24 /* AtmoTests.swift */; };
-		9C737E5121C50C2B009717BC /* SearchTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C737E5021C50C2B009717BC /* SearchTextField.framework */; };
 		9C8F6F2021A29C38007469B7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F1F21A29C38007469B7 /* City.swift */; };
 		9C8F6F2221A2AA56007469B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2121A2AA56007469B7 /* Extensions.swift */; };
 		9C8F6F2421A2F470007469B7 /* forecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8F6F2321A2F470007469B7 /* forecastViewCell.swift */; };
@@ -135,7 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C737E5121C50C2B009717BC /* SearchTextField.framework in Frameworks */,
 				8A5A4A5582411483E3EB60CC /* Pods_Atmo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,16 +459,12 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Atmo/Pods-Atmo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/LatLongToTimezone/LatLongToTimezone.framework",
-				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LatLongToTimezone.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

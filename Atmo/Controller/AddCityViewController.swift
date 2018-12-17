@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SearchTextField
+
 import GooglePlaces
 
 class AddCityViewController: UIViewController {
