@@ -23,7 +23,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var dates = generateDates(startDate: Date(), addbyUnit: .day, value: 5)
     let dateFormatter = DateFormatter()
     
-    var selectedCity: String = "Odessa"
+    var selectedCity : CityModel!
+    var selectedCityCoord: CLLocationCoordinate2D?
     
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -42,7 +43,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedCity)
         
         getDataByCity()
         
@@ -59,10 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    func selectedCitySet(s : String) {
-        selectedCity = s
-    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -93,15 +90,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func getDataByCity() {
-//        city.cityName = selectedCity
-        city.setCoordinatesByCity(selectedCity: selectedCity, city : city, label : cityLabel)
-        print("////")
-        print(city.cityName)
-        print("/////")
-        let params : [String : String] = ["q" : selectedCity, "lang" : "ru", "appid" : APP_ID]
-        getWeatherData(url: WEATHER_URL, parameters: params)
+
+        let params : [String : String] = ["lat" : String(selectedCity.lat), "lon" : String(selectedCity.lng), "lang" : "ru", "appid" : APP_ID]
         
         getForecastData(url: FORECAST_URL, parameters: params)
+        self.updateUI()
     }
     
     
@@ -113,7 +106,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-        cityLabel.text = "Локация недоступна"
+//        cityLabel.text = "Локация недоступна"
     }
     
     
@@ -127,24 +120,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
     }
     
-    func getWeatherData(url: String, parameters: [String : String]) {
-        
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-            response in
-            if response.result.isSuccess {
-                print("Success")
-                
-                let weatherJSON : JSON = JSON(response.result.value!)
-                self.service.updateWeatherData(json: weatherJSON, city: self.city, weatherDataModel: self.weatherDataModel, cityLabel: self.cityLabel)
-                self.updateUI()
-            }
-            else {
-                self.cityLabel.text = "Погода недоступна"
-            }
-        }
-    }
-    
-    
     func updateForecastData(json : JSON) {
         for i in 0...4 {
             let weather = Weather()
@@ -156,17 +131,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     
     func updateUI() {
-        
-        temperatureLabel.text = "\(weatherDataModel.temperature)°"
-        weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
-        backgroundImage.image = UIImage(named: weatherDataModel.backgroundName)
-        conditionLabel.text = (weatherDataModel.conditionText).firstUppercased
-        windDirectionLabel.text = weatherDataModel.windDirection
-        windSpeedLabel.text = "\(weatherDataModel.windSpeed) км/ч"
-        sunriseLabel.text = "\(weatherDataModel.sunriseHour)"
-        sunsetLabel.text = "\(weatherDataModel.sunsetHour)"
-        humidityLabel.text = "\(weatherDataModel.humidity)%"
-        cloudnessLabel.text = "\(weatherDataModel.cloudness )%"
+        cityLabel.text = selectedCity.cityTitle
+        temperatureLabel.text = "\(selectedCity.temp)°"
+        weatherIcon.image = UIImage(named: selectedCity.conditionIcon ?? "tornado")
+        backgroundImage.image = UIImage(named: selectedCity.conditionBackground ?? "thunderstorm-night-image")
+        conditionLabel.text = (selectedCity.conditionText)?.firstUppercased
+        windDirectionLabel.text = selectedCity.windDirection
+        windSpeedLabel.text = "\(selectedCity.windSpeed) км/ч"
+        sunriseLabel.text = selectedCity.sunriseHour
+        sunsetLabel.text = selectedCity.sunsetHour
+        humidityLabel.text = "\(selectedCity.humidity)%"
+        cloudnessLabel.text = "\(selectedCity.cloudness )%"
     }
     
 }
