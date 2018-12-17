@@ -9,28 +9,31 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
 class Service: NSObject {
     var serviceCity = City()
     var serviceWeather = Weather()
     
-    func getCityByName(city : CityModel, tableView : UITableView) {
-        var cityTitle = city.cityTitle
-        let parameters : [String : String] = ["q" : cityTitle ?? "Odessa", "lang" : "ru", "appid" : APP_ID]
+    func getCityByCoordinate(city : CityModel, tableView : UITableView) {
+        print("///")
+        print(city.lng)
+        print("///")
+        let parameters : [String : String] = ["lat" : String(city.lat), "lon" : String(city.lng), "lang" : "ru", "appid" : APP_ID]
         
         Alamofire.request(WEATHER_URL, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
                 print("Success")
                 
-                let weatherJSON : JSON = JSON(response.result.value!)
+                let json : JSON = JSON(response.result.value!)
                 
-                if let tempResult = weatherJSON["main"]["temp"].double {
-                    let w = Weather()
-                    w.hour = Calendar.current.component(.hour, from: Date())
+                if let tempResult = json["main"]["temp"].double {
+                    city.setValue(Calendar.current.component(.hour, from: Date()), forKey: "localHour")
+                    city.setValue(json["weather"][0]["id"].intValue, forKey: "condition")
                     city.setValue(Int16(Int(tempResult - 273.15)), forKey: "temp")
-                    city.setValue(w.updateWeatherIcon(condition: weatherJSON["weather"][0]["id"].intValue), forKey: "conditionIcon")
-                    
+                    city.setValue(updateWeatherIcon(condition: Int(city.condition), hour: Int(city.localHour)), forKey: "conditionIcon")
+                    self.updateCityModel(city : city, json : json)
                     tableView.reloadData()
                 }
             }
@@ -40,33 +43,17 @@ class Service: NSObject {
         }
     }
     
-    func updateWeatherData(json : JSON, city : City, weatherDataModel : Weather, cityLabel : UILabel) {
-        if let tempResult = json["main"]["temp"].double {
-//            city.cityName = json["name"].stringValue
-            if city.coordinates == nil {
-                weatherDataModel.sunriseHour = "7:21"
-                weatherDataModel.sunsetHour = "16:58"
-                weatherDataModel.hour = Calendar.current.component(.hour, from: Date())
-            } else {
-                city.setTimeZone(coord: city.coordinates)
-                weatherDataModel.hour = Int(weatherDataModel.setTime(timeZone: city.timeZone, interval:  Int(NSDate().timeIntervalSince1970)))!
-                weatherDataModel.sunriseHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunrise"].intValue))
-                weatherDataModel.sunsetHour = weatherDataModel.setHour(timeZone: city.timeZone, interval: (json["sys"]["sunset"].intValue))
-            }
-            
-            weatherDataModel.temperature =  Int(tempResult - 273.15)
-            weatherDataModel.condition = json["weather"][0]["id"].intValue
-            weatherDataModel.conditionText = json["weather"][0]["description"].stringValue
-            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
-            weatherDataModel.backgroundName = weatherDataModel.updateBackground(condition: weatherDataModel.condition)
-            weatherDataModel.windSpeed = json["wind"]["speed"].floatValue
-            weatherDataModel.windDirection = weatherDataModel.windDirection(degree: (json["wind"]["deg"].floatValue))
-            weatherDataModel.humidity = json["main"]["humidity"].intValue
-            weatherDataModel.cloudness = json["clouds"]["all"].intValue
-            
-        } else {
-            cityLabel.text = "Weather unavailable"
-        }
+    func updateCityModel(city : CityModel, json : JSON)  {
+        let timezone = setTimeZone(coord: CLLocationCoordinate2D.init(latitude: city.lat, longitude: city.lng))
+        
+        city.setValue(setHour(timeZone: (timezone)!, interval: (json["sys"]["sunrise"].intValue)), forKey: "sunriseHour")
+        city.setValue(setHour(timeZone: (timezone)!, interval: (json["sys"]["sunset"].intValue)), forKey: "sunsetHour")
+        city.setValue(json["weather"][0]["description"].stringValue, forKey: "conditionText")
+        city.setValue(updateBackground(condition: Int(city.condition), hour: Int(city.localHour)), forKey: "conditionBackground")
+        city.setValue(windDirection(degree: (json["wind"]["deg"].floatValue)), forKey: "windDirection")
+        city.setValue(json["wind"]["speed"].doubleValue, forKey: "windSpeed")
+        city.setValue(json["main"]["humidity"].intValue, forKey: "humidity")
+        city.setValue(json["clouds"]["all"].intValue, forKey: "cloudness")
     }
     
     
@@ -76,7 +63,7 @@ class Service: NSObject {
         weather.temperatureMin = Int(json["list"][2*i]["main"]["temp_min"].double! - 273.15)
         weather.conditionText = json["list"][j]["weather"][0]["description"].stringValue
         weather.condition = json["list"][j]["weather"][0]["id"].intValue
-        weather.weatherIconName = weather.updateWeatherIcon(condition: weather.condition)
+        weather.weatherIconName = updateWeatherIcon(condition: weather.condition, hour: weather.hour)
     }
     
 }

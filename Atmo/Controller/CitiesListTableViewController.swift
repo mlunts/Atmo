@@ -10,13 +10,14 @@ import UIKit
 import CoreData
 import Alamofire
 import SwiftyJSON
+import GooglePlaces
 
 class CitiesListTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var cityToBeSent: String = ""
-    
+    var cityToBeSentCoord : CLLocationCoordinate2D?
+    var cityToBeSent : CityModel!
     let service = Service()
     
     var cities: [CityModel] = []
@@ -53,18 +54,12 @@ class CitiesListTableViewController: UITableViewController {
         do {
             cities = try context.fetch(CityModel.fetchRequest())
             for city in cities {
-                service.getCityByName(city: city, tableView: tableView)
+                service.getCityByCoordinate(city: city, tableView: tableView)
             }
         }
         catch {
             print("Fetching Failed")
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cityToBeSent = cities[indexPath.row].cityTitle ?? "Odessa"
-        
-        performSegue(withIdentifier: "selectedCityWeather", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -83,15 +78,54 @@ class CitiesListTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cityToBeSent = cities[indexPath.row]
+//        cityToBeSentCoord = CLLocationCoordinate2D.init(latitude: cities[indexPath.row].lat, longitude: cities[indexPath.row].lng)
+        performSegue(withIdentifier: "selectedCityWeather", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "selectedCityWeather") {
             let CWeather = segue.destination as! ViewController
             CWeather.selectedCity = cityToBeSent
         }
-        
+    }
+    
+    @IBAction func addButtonTapped(_ sender : Any) {
+        let acController = GMSAutocompleteViewController()
+        acController.delegate = self
+        present(acController, animated: true, completion: nil)
     }
     
 }
 
 
 
+
+extension CitiesListTableViewController: GMSAutocompleteViewControllerDelegate {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        let city = CityModel(context: context)
+        
+        city.cityTitle = place.name
+        city.lat = place.coordinate.latitude
+        city.lng = place.coordinate.longitude
+        print("///////////////")
+        print(city.lng)
+        print("///////////////")
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        // Dismiss the GMSAutocompleteViewController when something is selected
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // Handle the error
+        print("Error: ", error.localizedDescription)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        // Dismiss when the user canceled the action
+        dismiss(animated: true, completion: nil)
+    }
+}
