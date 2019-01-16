@@ -4,9 +4,19 @@
 **Atmo** iOS application for weather reporting. 
 
 ## Screenshots
-<img src="https://github.com/earine/Atmo/blob/master/Atmo/Assets.xcassets/2018-11-22%2012.36.58_iphone7spacegrey_portrait.png" height="500" style="max-width:100%;" alt="screenshot">
+<img src="https://drive.google.com/uc?id=1Qyofpwj4wxLqNYSEmV4pWAy0xl3DSLlj" height="350" style="max-width:100%;" alt="screenshot"> <img src="https://drive.google.com/uc?id=1Qa4XQ4EC_niUBIu9rq9yMB4G5_a7rAoU" height="350" style="max-width:100%;" alt="screenshot"> <img src="https://drive.google.com/uc?id=1HpXw6nc7sCT1tqbkzuLEvXhreKDPCwxd" height="350" style="max-width:100%;" alt="screenshot"> <img src="https://drive.google.com/uc?id=1Q_ulO29QUNGdSyIbU2e3nAYddsv_z_QW" height="350" style="max-width:100%;" alt="screenshot"> 
 
 ### FEATURES
+-- v.2
+<ul>
+<li>Now you can add cities to city list and they will be saved on your device</li>
+  <li>Autocomplete for searching cities </li>
+   <li>Displays the current weather condition in the city list</li>
+<li>When you are offline, it's showing the last saved information about weather</li>
+
+<li>Used GooglePlaces API and OpenWeatherMap API interaction</li>
+<li>Deployment target: iOS 12.1</li>
+</ul>
 
 -- v.1
 <ul>
